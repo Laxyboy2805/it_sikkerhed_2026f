@@ -9,7 +9,7 @@ Her er et billede af min unit-tests:
 
 ## Grænsetestværdier 
 
-### emne: login og password 
+### emne: Login- og brugerhåndteringssystem med multifactor Auth (Two-Factor Authentication med password og godkendelse gennem mobil)
 
 Der testes om at en password har en længde af mindst 8 tegn, da det ellers ville være for kort og nemt at gætte. 
 
@@ -30,3 +30,32 @@ assert is_valid_password("Abc123!@") == True  # 8 tegn
 
 Over grænsen
 assert is_valid_password("Abc1234!@") == True  # 9 tegn
+
+## Ækvivalens klasser 
+
+I et login-system behandles mange forskellige inputs ens. Derfor kan de opdeles i ækvivalensklasser.
+
+Nedenfor er der angivet de forskellige ækvivalens klasser gældende for dette login system: 
+
+Klasse 1 – Gyldige inputs
+Alle emails og passwords der overholder reglerne behandles ens, hvor login ville være tilladt.
+Eksempler herpå:
+
+test@mail.com / Correct123
+user@site.dk / MyPass99
+
+Klasse 2 – Forkert password
+Uanset hvilket forkert password der skrives, gør systemet det samme, altså at afvise.
+
+Klasse 3 – Ugyldigt email format
+Alle emails der ikke matcher format behandles ens, som vil blive afvist.
+Eksempler:
+testmail.com
+@mail.com
+test@
+
+Klasse 4 – Tomme felter
+Om det er email eller password der mangler, gør systemet det samme.
+Eksempler:
+"" / Correct123
+test@mail.com / ""
