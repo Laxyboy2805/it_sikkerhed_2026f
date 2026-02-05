@@ -59,3 +59,26 @@ Om det er email eller password der mangler, gør systemet det samme.
 Eksempler:
 "" / Correct123
 test@mail.com / ""
+
+## Cycle proces ved login
+
+LOGGED_OUT
+  ↓
+ENTER_CREDENTIALS
+  ↓ (korrekt)
+AUTHENTICATED  ─────────────→ LOGGED_OUT (logout)
+
+ENTER_CREDENTIALS
+  ↓ (forkert)
+FAILED_ATTEMPT
+  ↓ (forsøg < 5)
+ENTER_CREDENTIALS   (retry)
+
+FAILED_ATTEMPT
+  ↓ (forsøg = 5)
+LOCKED
+  ↓ (reset)
+RESET_PASSWORD
+  ↓
+LOGGED_OUT
+
